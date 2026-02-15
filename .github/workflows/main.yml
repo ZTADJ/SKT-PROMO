@@ -23,10 +23,11 @@ jobs:
       - name: Skript ausführen
         run: python promo_scanner.py
 
-      - name: Ergebnisse speichern
+- name: Ergebnisse speichern
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
+          git pull --rebase  # Holt erst die neuesten Änderungen vom Server
           git add promos.csv
           git commit -m "Tägliches Promo-Update" || exit 0
           git push
