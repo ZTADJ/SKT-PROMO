@@ -9,10 +9,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write    # Stellt sicher, dass die Action schreiben darf
+      contents: write    # Das ist der entscheidende Schlüssel!
     steps:
       - name: Code auschecken
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true # Hält die Verbindung für den Push offen
 
       - name: Python installieren
         uses: actions/setup-python@v4
@@ -27,9 +29,8 @@ jobs:
 
       - name: Ergebnisse speichern
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          git pull --rebase
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add promos.csv
           git commit -m "Tägliches Promo-Update" || exit 0
           git push
