@@ -1,0 +1,32 @@
+name: AirFrance Daily Scan
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Jeden Tag um 08:00 Uhr
+  workflow_dispatch:      # Ermöglicht den manuellen Start-Button
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v3
+
+      - name: Python installieren
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Pakete installieren
+        run: pip install requests
+
+      - name: Skript ausführen
+        run: python promo_scanner.py
+
+      - name: Ergebnisse speichern
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add promos.csv
+          git commit -m "Tägliches Promo-Update" || exit 0
+          git push
