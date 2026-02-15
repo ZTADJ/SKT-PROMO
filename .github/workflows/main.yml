@@ -29,6 +29,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main  # Holt deine Code-Änderung ab, bevor er die CSV hochlädt
           git add promos.csv
           git commit -m "Tägliches Promo-Update" || exit 0
-          git push
+          git push origin main
