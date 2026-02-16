@@ -2,17 +2,19 @@ name: AirFrance Daily Scan
 
 on:
   schedule:
-    - cron: '0 8 * * *'  # 08:00 UTC = 09:00 Uhr deutsche Winterzeit
-  workflow_dispatch:      # Der "Manuell-Start" Button
+    - cron: '0 8 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write    # Wichtig für Schreibrechte
+      contents: write
     steps:
       - name: Code auschecken
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Holt die gesamte Historie, um Fehler zu vermeiden
 
       - name: Python installieren
         uses: actions/setup-python@v4
@@ -29,7 +31,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main  # Holt deine Code-Änderung ab, bevor er die CSV hochlädt
           git add promos.csv
           git commit -m "Tägliches Promo-Update" || exit 0
+          git pull --rebase origin main || git rebase --skip
           git push origin main
