@@ -9,7 +9,6 @@ import io
 # Dein persönlicher API-Key
 API_KEY = '7820762d03de1f63a29f8b96423cb6a4'
 
-# Liste der Märkte, Codes, Städte und URLs
 MARKETS = [
     ("Poland", "PL", "Warsaw", "https://wwws.airfrance.pl/deals?zoneCode=NAME&zoneType=AREA"),
     ("Poland", "PL", "Krakow", "https://wwws.airfrance.pl/deals?zoneCode=NAME&zoneType=AREA&originCode=KRK&originType=CITY"),
@@ -25,17 +24,35 @@ MARKETS = [
 ]
 
 def scrape_market(country, code, origin, url):
+    # render=true ist essenziell, um die Preise statt des "*" zu laden
     proxy_url = f"http://api.scraperapi.com?api_key={API_KEY}&url={url}&render=true"
     try:
         print(f"Scanne {country} ({origin})...")
         response = requests.get(proxy_url, timeout=120)
         if response.status_code == 200:
             html = response.text
-            pattern = re.compile(r'Promo fare.*?bwdo-offer-card__city[^>]*>\s*([^<]+)\s*</span>', re.DOTALL)
-            found_cities = list(set(pattern.findall(html)))
-            clean_cities = [c.strip() for c in found_cities]
-            print(f"Erfolg: {len(clean_cities)} Promos für {origin} gefunden.")
-            return clean_cities
+            
+            # Dieser Regex sucht die Stadt und schaut dann im Text weiter nach Währung und Betrag
+            # Er deckt Formate wie "HUF 277,700" oder "277.700 HUF" ab.
+            pattern = re.compile(
+                r'bwdo-offer-card__city[^>]*>\s*([^<]+)\s*</span>'  # Gruppe 1: Stadt
+                r'.*?bwdo-offer-card__price-currency[^>]*>\s*([^<]+)\s*</span>' # Gruppe 2: Währung (z.B. HUF)
+                r'.*?bwdo-offer-card__price-amount[^>]*>\s*([^<]+)\s*</span>', # Gruppe 3: Betrag (z.B. 277,700)
+                re.DOTALL
+            )
+            
+            matches = pattern.findall(html)
+            results = []
+            for m in matches:
+                city = m[0].strip()
+                currency = m[1].strip()
+                # Säubert den Preis von HTML-Resten und Leerzeichen
+                price = m[2].strip().replace('&nbsp;', '').replace('\xa0', '')
+                results.append((city, currency, price))
+            
+            unique_results = list(set(results))
+            print(f"Erfolg: {len(unique_results)} Angebote für {origin} extrahiert.")
+            return unique_results
         else:
             print(f"Fehler {response.status_code} bei {origin}")
             return []
@@ -44,56 +61,45 @@ def scrape_market(country, code, origin, url):
         return []
 
 def update_gist(csv_content):
-    # HIER DEINE LANGE GIST-ID EINTRAGEN (aus der Browser-URL des Gists)
+    # Deine Gist ID hier einfügen
     gist_id = "DEINE_SECRET_GIST_ID_HIER_EINTRAGEN"
     token = os.getenv("GIST_TOKEN")
-    
     if not token:
-        print("Fehler: Kein GIST_TOKEN in den Repository Secrets gefunden!")
+        print("Kein Token gefunden!")
         return
 
     url = f"https://api.github.com/gists/{gist_id}"
     headers = {"Authorization": f"token {token}"}
     payload = {"files": {"promos.csv": {"content": csv_content}}}
     
-    try:
-        r = requests.patch(url, headers=headers, json=payload)
-        if r.status_code == 200:
-            print("Secret Gist erfolgreich aktualisiert!")
-        else:
-            print(f"Gist-Fehler: {r.status_code} - {r.text}")
-    except Exception as e:
-        print(f"Fehler beim Gist-Update: {e}")
+    r = requests.patch(url, headers=headers, json=payload)
+    if r.status_code == 200:
+        print("Gist mit Preisen und Währungen aktualisiert!")
 
 if __name__ == "__main__":
     final_results = []
     for country, code, origin, url in MARKETS:
-        cities = scrape_market(country, code, origin, url)
-        final_results.append((country, code, origin, cities))
-        time.sleep(2)
+        data = scrape_market(country, code, origin, url)
+        final_results.append((country, code, origin, data))
+        time.sleep(1) # Kurze Pause zur Schonung der API
     
-    # CSV-Struktur im Speicher aufbauen
     output = io.StringIO()
     writer = csv.writer(output)
     
-    # Header Zeile
-    writer.writerow(["Year", "Quarter", "Month", "Date", "Country", "Code", "Origin City", "Destination City"])
+    # Neue Header-Struktur
+    writer.writerow(["Year", "Quarter", "Month", "Date", "Country", "Code", "Origin City", "Destination City", "Currency", "Price"])
     
     now = datetime.now()
     year_val = now.strftime("%Y")
-    # Format: Q1 2026
     q_val = f"Q{(now.month - 1) // 3 + 1} {year_val}"
     month_val = now.strftime("%B")
     date_val = now.strftime("%Y-%m-%d %H:%M")
 
-    for (country, code, origin, cities) in final_results:
-        if not cities:
-            # Jetzt "No promos" statt "KEINE PROMOS"
-            writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, "No promos"])
+    for (country, code, origin, details) in final_results:
+        if not details:
+            writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, "No promos", "-", "-"])
         else:
-            for dest in cities:
-                writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, dest])
+            for dest, curr, price in details:
+                writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, dest, curr, price])
     
-    # Den gesamten Inhalt an den Secret Gist senden
     update_gist(output.getvalue())
-    print("Vorgang abgeschlossen.")
