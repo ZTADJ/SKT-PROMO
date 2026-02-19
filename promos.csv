@@ -1,12 +1,227 @@
 Year,Quarter,Month,Date,Country,Code,Origin City,Destination City,Price
-2026,Q1 2026,February,2026-02-19 22:25,Poland,PL,Warsaw,No Promo Found,0
-2026,Q1 2026,February,2026-02-19 22:25,Poland,PL,Krakow,No Promo Found,0
-2026,Q1 2026,February,2026-02-19 22:25,Hungary,HU,Budapest,No Promo Found,0
-2026,Q1 2026,February,2026-02-19 22:25,Czech Republic,CZ,Prague,No Promo Found,0
-2026,Q1 2026,February,2026-02-19 22:25,Romania,RO,Bucharest,No Promo Found,0
-2026,Q1 2026,February,2026-02-19 22:25,Croatia,HR,Zagreb,No Promo Found,0
-2026,Q1 2026,February,2026-02-19 22:25,Croatia,HR,Split,No Promo Found,0
-2026,Q1 2026,February,2026-02-19 22:25,Bulgaria,BG,Sofia,No Promo Found,0
-2026,Q1 2026,February,2026-02-19 22:25,Turkey,TR,Istanbul,No Promo Found,0
-2026,Q1 2026,February,2026-02-19 22:25,Israel,IL,Tel Aviv,No Promo Found,0
-2026,Q1 2026,February,2026-02-19 22:25,Serbia,RS,Belgrade,No Promo Found,0
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Luanda,2812
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Raleigh Durham,3134
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Cayenne,2594
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Chicago,2101
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Johannesburg,2514
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Miami,2396
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,New York,2116
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Tunis,3131
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Phoenix,3480
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Algiers,3149
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Manila,3065
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Vancouver,2886
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Seattle,3612
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Lagos,2389
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Krakow,2116
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Washington,3179
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Beijing,2896
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Antananarivo,2982
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,San Francisco,3290
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,France,3470
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Dallas,3434
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Houston,3432
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Warsaw,Los Angeles,3280
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Washington,3149
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Los Angeles,2861
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Dallas,3450
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Phoenix,3407
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Johannesburg,2484
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Indian Ocean,3033
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Chicago,2092
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Raleigh Durham,3150
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Seattle,3582
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Ho Chi Minh City,2910
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Krakow,2107
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Minneapolis,2877
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,San Francisco,3278
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Fortaleza,2585
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Kigali,2908
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Lagos,2357
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Zanzibar,3118
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Africa,2952
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,France,3439
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Kilimanjaro,3103
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Miami,2371
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Houston,3400
+2026,Q1 2026,February,2026-02-19 22:34,Poland,PL,Krakow,Mexico City,2107
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Delhi,203000
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,St Martin,382700
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Raleigh Durham,277700
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,New York,179500
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Orlando,221400
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,France,203100
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Washington,180600
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Rio de Janeiro,195100
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Antananarivo,246400
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Houston,275700
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,San Francisco,216900
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Budapest,246400
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Lima,382700
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Seattle,243500
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Hong Kong,202900
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Los Angeles,218100
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Punta Cana,332600
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Cancun,204400
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Dallas,277700
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Atlanta,191900
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Papeete Tahiti,247600
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Osaka,285500
+2026,Q1 2026,February,2026-02-19 22:34,Hungary,HU,Budapest,Miami,218400
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,North America,11907
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Papeete Tahiti,19036
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Singapore,12743
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,France,12745
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Cancun,14534
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Toronto,14121
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Washington,14759
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Osaka,14184
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Chicago,20085
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,San Francisco,12495
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Punta Cana,18019
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Montreal,20085
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Los Angeles,14534
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Bogota,19112
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Cancun,19036
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Delhi,17894
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Mauritius,15878
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Houston,18912
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Raleigh Durham,18984
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Seattle,12392
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Caribbean,15390
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,New York,11012
+2026,Q1 2026,February,2026-02-19 22:34,Czech Republic,CZ,Prague,Prague,11012
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Bucharest,984
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Colombo,909
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Houston,753
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Phoenix,772
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Shanghai,979
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Singapore,735
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Seattle,792
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Miami,546
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Raleigh Durham,683
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Washington,438
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Chicago,562
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Los Angeles,865
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Atlanta,766
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Ho Chi Minh City,510
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Abidjan,532
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Dallas,759
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,San Francisco,767
+2026,Q1 2026,February,2026-02-19 22:34,Romania,RO,Bucharest,Kuala Lumpur,799
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Havana,708
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Africa,551
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Singapore,782
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,North America,618
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Shanghai,644
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Zanzibar,725
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Osaka,903
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Houston,784
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Seattle,543
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Chicago,643
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,St Martin,985
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Bangkok,417
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,San Jose,763
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Santiago de Chile,671
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Indian Ocean,813
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Montreal,643
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Toronto,547
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Mexico City,541
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Washington,643
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Central America,621
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Miami,547
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Ottawa,839
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Denpasar Bali,834
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Atlanta,788
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Saint Denis,808
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Denver,721
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,San Francisco,625
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Zagreb,541
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Hong Kong,638
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Casablanca,708
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,France,464
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Zagreb,Raleigh Durham,727
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Split,Los Angeles,652
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Split,Washington,786
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Split,Ottawa,637
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Split,Africa,750
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Split,Miami,637
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Split,Cancun,811
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Split,North America,708
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Split,Montreal,786
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Split,Zagreb,652
+2026,Q1 2026,February,2026-02-19 22:34,Croatia,HR,Split,France,1008
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Dallas,753
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Fort de France,715
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Boston,527
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Chicago,330
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Miami,541
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Ottawa,783
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Seattle,789
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Raleigh Durham,678
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Indian Ocean,811
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Beijing,537
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Pointe a Pitre,714
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Washington,434
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Sofia,991
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Marrakech,715
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Shanghai,544
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Helsinki,349
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Montreal,541
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Paris,450
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Central America,825
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,St Martin,991
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Africa,496
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Denver,754
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Singapore,789
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Toronto,308
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Havana,584
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Sao Paulo,769
+2026,Q1 2026,February,2026-02-19 22:34,Bulgaria,BG,Sofia,Lima,1003
+2026,Q1 2026,February,2026-02-19 22:34,Turkey,TR,Istanbul,Istanbul,756
+2026,Q1 2026,February,2026-02-19 22:34,Turkey,TR,Istanbul,Havana,756
+2026,Q1 2026,February,2026-02-19 22:34,Turkey,TR,Istanbul,Santo Domingo,1217
+2026,Q1 2026,February,2026-02-19 22:34,Turkey,TR,Istanbul,Sao Paulo,862
+2026,Q1 2026,February,2026-02-19 22:34,Israel,IL,Tel Aviv,Clermont Ferrand,529
+2026,Q1 2026,February,2026-02-19 22:34,Israel,IL,Tel Aviv,Lyon,537
+2026,Q1 2026,February,2026-02-19 22:34,Israel,IL,Tel Aviv,Pau,468
+2026,Q1 2026,February,2026-02-19 22:34,Israel,IL,Tel Aviv,Tel Aviv Yafo,306
+2026,Q1 2026,February,2026-02-19 22:34,Israel,IL,Tel Aviv,Biarritz,474
+2026,Q1 2026,February,2026-02-19 22:34,Israel,IL,Tel Aviv,Los Angeles,391
+2026,Q1 2026,February,2026-02-19 22:34,Israel,IL,Tel Aviv,Brest,526
+2026,Q1 2026,February,2026-02-19 22:34,Israel,IL,Tel Aviv,Nice,306
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Seoul,71095
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Belgrade,90069
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Rabat,90945
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Lima,118206
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Tokyo,113632
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,San Jose,90551
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Atlanta,68222
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Antananarivo,78882
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,St Martin,118083
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Lagos,72357
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Havana,75262
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Cayenne,99699
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Vancouver,85586
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Rio de Janeiro,93833
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Luanda,89188
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Orlando,59510
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,North America,68975
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Buenos Aires,85586
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Los Angeles,59370
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Hong Kong,78431
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Mexico City,81731
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Osaka,110837
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Cancun,88912
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,France,64914
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Houston,87777
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Denver,80348
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Cape Town,66907
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Middle East,72742
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Shanghai,76345
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Delhi,66916
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Washington,72389
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Santiago de Chile,90069
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Toronto,59888
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,Indian Ocean,102416
+2026,Q1 2026,February,2026-02-19 22:34,Serbia,RS,Belgrade,San Francisco,69093
