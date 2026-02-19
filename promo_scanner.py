@@ -22,11 +22,11 @@ MARKETS = [
     ("Serbia", "RS", "Belgrade", "https://wwws.airfrance.rs/deals?zoneCode=NAME&zoneType=AREA")
 ]
 
-# Die erlaubten Länder-Codes
+# Die erlaubten Länder-Codes (Nord-/Mittelamerika)
 ALLOWED_COUNTRY_CODES = ["US", "CA", "MX", "CR"]
 
 def scrape_market(country, country_code, origin_city, url):
-    # country_code=eu hilft gegen Geo-Blocking, render=true lädt die JSON-Daten im Hintergrund
+    # country_code=eu hilft gegen Geo-Blocking, render=true laed JS
     proxy_url = f"http://api.scraperapi.com?api_key={API_KEY}&url={url}&render=true&country_code=eu"
     
     try:
@@ -39,26 +39,18 @@ def scrape_market(country, country_code, origin_city, url):
 
         html = response.text
         
-        # Der Regex sucht nun:
-        # 1. Das Label (Stadt)
-        # 2. Den CountryCode (muss US, CA, MX oder CR sein)
-        # 3. isPromo: true
-        # 4. Den Preis
-        # Wir suchen erst nach dem Label, dann nach dem CountryCode innerhalb desselben Objekts.
-        
-        # Muster: "label":"Stadt" ... "countryCode":"XX" ... "isPromo":true ... "price":123
+        # Regex fuer Label, CountryCode (US/CA/MX/CR), isPromo und Price
         pattern = r'"label"\s*:\s*"([^"]+)"\s*,\s*"countryCode"\s*:\s*"([^"]+)"\s*.*?"isPromo"\s*:\s*true\s*.*?"price"\s*:\s*(\d+)'
         
         matches = re.findall(pattern, html, re.DOTALL)
 
         results = []
-        for city, c_code, price in matches:
-            # Filter: Nur wenn der CountryCode in unserer Liste ist
-            if c_code in ALLOWED_COUNTRY_CODES:
-                results.append((city, c_code, price))
+        for city, dest_country_code, price in matches:
+            if dest_country_code in ALLOWED_COUNTRY_CODES:
+                results.append((city, dest_country_code, price))
             
         unique_results = list(set(results))
-        print(f"Erfolg: {len(unique_results)} Nord-/Mittelamerika Promos für {origin_city} gefunden.")
+        print(f"Erfolg: {len(unique_results)} Promos fuer {origin_city} extrahiert.")
         return unique_results
 
     except Exception as e:
@@ -75,21 +67,24 @@ if __name__ == "__main__":
 
     filename = "promos.csv"
     now = datetime.now()
-    year_val = now.strftime("%Y")
-    q_val = f"Q{(now.month - 1) // 3 + 1} {year_val}"
-    month_val = now.strftime("%B")
+    
+    # Formatierung: Year (2026), Month (FEB26), Date (2026-02-19)
+    year_full = now.strftime("%Y")
+    month_custom = now.strftime("%b").upper() + now.strftime("%y") # Erzeugt z.B. FEB26
     date_val = now.strftime("%Y-%m-%d %H:%M")
+    q_val = f"Q{(now.month - 1) // 3 + 1} {year_full}"
 
     with open(filename, "w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
-        # Wir nehmen den Country Code der Destination mit auf
-        writer.writerow(["Year", "Quarter", "Month", "Date", "Country", "Code", "Origin City", "Dest. City", "Dest. Code", "Price"])
+        
+        # Neue Spaltennamen laut Wunsch
+        writer.writerow(["Year", "Quarter", "Month", "Date", "O Ctry", "O Ctry Code", "O City", "D City", "D Ctry Code", "Fare"])
         
         for country, code, origin, promos in all_data:
             if not promos:
-                writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, "No Promo Found", "-", "0"])
+                writer.writerow([year_full, q_val, month_custom, date_val, country, code, origin, "No Promo Found", "-", "0"])
             else:
-                for dest_city, dest_code, price in promos:
-                    writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, dest_city, dest_code, price])
+                for dest_city, dest_country_code, price in promos:
+                    writer.writerow([year_full, q_val, month_custom, date_val, country, code, origin, dest_city, dest_country_code, price])
 
-    print(f"Fertig! {filename} wurde erstellt.")
+    print(f"Fertig! {filename} wurde mit neuen Headern erstellt.")
