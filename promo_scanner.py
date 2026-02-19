@@ -4,12 +4,12 @@ import csv
 from datetime import datetime
 import time
 import os
+import io
 
 # Dein persönlicher API-Key
 API_KEY = '7820762d03de1f63a29f8b96423cb6a4'
 
 # Liste der Märkte, Codes, Städte und URLs
-# Format: (Country, CountryCode, OriginCity, URL)
 MARKETS = [
     ("Poland", "PL", "Warsaw", "https://wwws.airfrance.pl/deals?zoneCode=NAME&zoneType=AREA"),
     ("Poland", "PL", "Krakow", "https://wwws.airfrance.pl/deals?zoneCode=NAME&zoneType=AREA&originCode=KRK&originType=CITY"),
@@ -43,36 +43,57 @@ def scrape_market(country, code, origin, url):
         print(f"Technischer Fehler bei {origin}: {e}")
         return []
 
-def save_to_csv(results):
-    file_exists = os.path.isfile('promos.csv')
-    now = datetime.now()
+def update_gist(csv_content):
+    # HIER DEINE LANGE GIST-ID EINTRAGEN (aus der Browser-URL des Gists)
+    gist_id = "DEINE_SECRET_GIST_ID_HIER_EINTRAGEN"
+    token = os.getenv("GIST_TOKEN")
     
-    # Zeit-Komponenten vorbereiten
-    year = now.strftime("%Y")
-    quarter = (now.month - 1) // 3 + 1
-    month = now.strftime("%B")
-    full_date = now.strftime("%Y-%m-%d %H:%M")
+    if not token:
+        print("Fehler: Kein GIST_TOKEN in den Repository Secrets gefunden!")
+        return
 
-    with open('promos.csv', 'a', newline='', encoding='utf-8') as f:
-        writer = csv.writer(f)
-        
-        # Kopfzeile nur schreiben, wenn die Datei neu erstellt wird
-        if not file_exists or os.stat('promos.csv').st_size == 0:
-            writer.writerow(["Year", "Quarter", "Month", "Date", "Country", "Code", "Origin City", "Destination City"])
-        
-        for (country, code, origin, cities) in results:
-            if not cities:
-                writer.writerow([year, quarter, month, full_date, country, code, origin, "KEINE PROMOS"])
-            else:
-                for dest in cities:
-                    writer.writerow([year, quarter, month, full_date, country, code, origin, dest])
+    url = f"https://api.github.com/gists/{gist_id}"
+    headers = {"Authorization": f"token {token}"}
+    payload = {"files": {"promos.csv": {"content": csv_content}}}
+    
+    try:
+        r = requests.patch(url, headers=headers, json=payload)
+        if r.status_code == 200:
+            print("Secret Gist erfolgreich aktualisiert!")
+        else:
+            print(f"Gist-Fehler: {r.status_code} - {r.text}")
+    except Exception as e:
+        print(f"Fehler beim Gist-Update: {e}")
 
 if __name__ == "__main__":
-    final_data = []
+    final_results = []
     for country, code, origin, url in MARKETS:
         cities = scrape_market(country, code, origin, url)
-        final_data.append((country, code, origin, cities))
+        final_results.append((country, code, origin, cities))
         time.sleep(2)
     
-    save_to_csv(final_data)
-    print("Fertig!")
+    # CSV-Struktur im Speicher aufbauen
+    output = io.StringIO()
+    writer = csv.writer(output)
+    
+    # Header Zeile
+    writer.writerow(["Year", "Quarter", "Month", "Date", "Country", "Code", "Origin City", "Destination City"])
+    
+    now = datetime.now()
+    year_val = now.strftime("%Y")
+    # Format: Q1 2026
+    q_val = f"Q{(now.month - 1) // 3 + 1} {year_val}"
+    month_val = now.strftime("%B")
+    date_val = now.strftime("%Y-%m-%d %H:%M")
+
+    for (country, code, origin, cities) in final_results:
+        if not cities:
+            # Jetzt "No promos" statt "KEINE PROMOS"
+            writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, "No promos"])
+        else:
+            for dest in cities:
+                writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, dest])
+    
+    # Den gesamten Inhalt an den Secret Gist senden
+    update_gist(output.getvalue())
+    print("Vorgang abgeschlossen.")
