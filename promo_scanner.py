@@ -4,8 +4,8 @@ import csv
 from datetime import datetime
 import time
 import os
-import json
 
+# Dein API-Key
 API_KEY = '7820762d03de1f63a29f8b96423cb6a4'
 
 MARKETS = [
@@ -23,67 +23,68 @@ MARKETS = [
 ]
 
 def scrape_market(country, country_code, origin_city, url):
-    # Wir nutzen ScraperAPI, um das gerenderte HTML zu bekommen
-    proxy_url = f"http://api.scraperapi.com?api_key={API_KEY}&url={url}&render=true"
+    # Wir nutzen render=true (für JS) und country_code=eu (damit AF uns nicht blockt)
+    proxy_url = f"http://api.scraperapi.com?api_key={API_KEY}&url={url}&render=true&country_code=eu"
     
     try:
         print(f"Scanne {country} ({origin_city})...")
-        response = requests.get(proxy_url, timeout=120)
+        # Längeres Timeout, da Rendering Zeit braucht
+        response = requests.get(proxy_url, timeout=180)
+        
         if response.status_code != 200:
+            print(f"Fehler: Status {response.status_code}")
             return []
 
         html = response.text
+        
+        # Dieser Regex sucht nach Dallas/NYC etc., prüft isPromo und greift den Preis.
+        # re.DOTALL ist wichtig, damit ".*?" auch über Zeilenumbrüche hinweg sucht.
+        pattern = r'"label"\s*:\s*"([^"]+)"\s*.*?"isPromo"\s*:\s*true\s*.*?"price"\s*:\s*(\d+)'
+        matches = re.findall(pattern, html, re.DOTALL)
+
         results = []
-
-        # Wir suchen alle "DealsOffer" Blöcke im Quellcode
-        # Dieser Regex findet alles zwischen {"__typename":"DealsOffer" ... und dem Ende des Objekts }
-        offers = re.findall(r'\{"__typename":"DealsOffer".*?\}', html)
-
-        for offer_str in offers:
-            try:
-                # Wir reparieren den String minimal, falls nötig, und laden ihn als JSON
-                offer_data = json.loads(offer_str)
-                
-                # Check 1: Ist es eine Promo?
-                if offer_data.get("isPromo") is True:
-                    city_label = offer_data.get("location", {}).get("label")
-                    price = offer_data.get("price")
-                    
-                    if city_label and price:
-                        results.append((city_label, price))
-            except:
-                continue # Falls ein Block mal kein gültiges JSON ist, ignorieren
-
-        # Duplikate entfernen
+        for city, price in matches:
+            # Wir nehmen nur "echte" Städtenamen (kurz genug)
+            if len(city) < 40:
+                results.append((city, price))
+            
         unique_results = list(set(results))
-        print(f"Erfolg: {len(unique_results)} Promos gefunden.")
+        print(f"Erfolg: {len(unique_results)} Promos für {origin_city} gefunden.")
         return unique_results
 
     except Exception as e:
-        print(f"Fehler: {e}")
+        print(f"Technischer Fehler bei {origin_city}: {e}")
         return []
 
 if __name__ == "__main__":
     all_data = []
+    
+    # Märkte abarbeiten
     for country, code, origin, url in MARKETS:
         promos = scrape_market(country, code, origin, url)
         all_data.append((country, code, origin, promos))
-        time.sleep(1)
+        # Kurze Pause für die API-Stabilität
+        time.sleep(2)
 
-    # Datei lokal speichern
-    with open("promos.csv", "w", encoding="utf-8", newline="") as f:
+    # Datei schreiben
+    filename = "promos.csv"
+    now = datetime.now()
+    year_val = now.strftime("%Y")
+    q_val = f"Q{(now.month - 1) // 3 + 1} {year_val}"
+    month_val = now.strftime("%B")
+    date_val = now.strftime("%Y-%m-%d %H:%M")
+
+    with open(filename, "w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
+        # Header
         writer.writerow(["Year", "Quarter", "Month", "Date", "Country", "Code", "Origin City", "Destination City", "Price"])
         
-        now = datetime.now()
-        y, m, d = now.year, now.strftime("%B"), now.strftime("%Y-%m-%d %H:%M")
-        q = f"Q{(now.month - 1) // 3 + 1} {y}"
-
         for country, code, origin, promos in all_data:
             if not promos:
-                writer.writerow([y, q, m, d, country, code, origin, "No Promo Found", "0"])
+                # Damit die Datei nicht "leer" aussieht für Git
+                writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, "No Promo Found", "0"])
             else:
                 for dest, price in promos:
-                    writer.writerow([y, q, m, d, country, code, origin, dest, price])
+                    writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, dest, price])
 
-    print("CSV erfolgreich erstellt!")
+    print(f"Fertig! {filename} wurde erstellt.")
