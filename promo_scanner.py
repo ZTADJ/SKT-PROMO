@@ -22,13 +22,15 @@ MARKETS = [
     ("Serbia", "RS", "Belgrade", "https://wwws.airfrance.rs/deals?zoneCode=NAME&zoneType=AREA")
 ]
 
+# Die erlaubten Länder-Codes
+ALLOWED_COUNTRY_CODES = ["US", "CA", "MX", "CR"]
+
 def scrape_market(country, country_code, origin_city, url):
-    # Wir nutzen render=true (für JS) und country_code=eu (damit AF uns nicht blockt)
+    # country_code=eu hilft gegen Geo-Blocking, render=true lädt die JSON-Daten im Hintergrund
     proxy_url = f"http://api.scraperapi.com?api_key={API_KEY}&url={url}&render=true&country_code=eu"
     
     try:
         print(f"Scanne {country} ({origin_city})...")
-        # Längeres Timeout, da Rendering Zeit braucht
         response = requests.get(proxy_url, timeout=180)
         
         if response.status_code != 200:
@@ -37,19 +39,26 @@ def scrape_market(country, country_code, origin_city, url):
 
         html = response.text
         
-        # Dieser Regex sucht nach Dallas/NYC etc., prüft isPromo und greift den Preis.
-        # re.DOTALL ist wichtig, damit ".*?" auch über Zeilenumbrüche hinweg sucht.
-        pattern = r'"label"\s*:\s*"([^"]+)"\s*.*?"isPromo"\s*:\s*true\s*.*?"price"\s*:\s*(\d+)'
+        # Der Regex sucht nun:
+        # 1. Das Label (Stadt)
+        # 2. Den CountryCode (muss US, CA, MX oder CR sein)
+        # 3. isPromo: true
+        # 4. Den Preis
+        # Wir suchen erst nach dem Label, dann nach dem CountryCode innerhalb desselben Objekts.
+        
+        # Muster: "label":"Stadt" ... "countryCode":"XX" ... "isPromo":true ... "price":123
+        pattern = r'"label"\s*:\s*"([^"]+)"\s*,\s*"countryCode"\s*:\s*"([^"]+)"\s*.*?"isPromo"\s*:\s*true\s*.*?"price"\s*:\s*(\d+)'
+        
         matches = re.findall(pattern, html, re.DOTALL)
 
         results = []
-        for city, price in matches:
-            # Wir nehmen nur "echte" Städtenamen (kurz genug)
-            if len(city) < 40:
-                results.append((city, price))
+        for city, c_code, price in matches:
+            # Filter: Nur wenn der CountryCode in unserer Liste ist
+            if c_code in ALLOWED_COUNTRY_CODES:
+                results.append((city, c_code, price))
             
         unique_results = list(set(results))
-        print(f"Erfolg: {len(unique_results)} Promos für {origin_city} gefunden.")
+        print(f"Erfolg: {len(unique_results)} Nord-/Mittelamerika Promos für {origin_city} gefunden.")
         return unique_results
 
     except Exception as e:
@@ -59,14 +68,11 @@ def scrape_market(country, country_code, origin_city, url):
 if __name__ == "__main__":
     all_data = []
     
-    # Märkte abarbeiten
     for country, code, origin, url in MARKETS:
         promos = scrape_market(country, code, origin, url)
         all_data.append((country, code, origin, promos))
-        # Kurze Pause für die API-Stabilität
         time.sleep(2)
 
-    # Datei schreiben
     filename = "promos.csv"
     now = datetime.now()
     year_val = now.strftime("%Y")
@@ -76,15 +82,14 @@ if __name__ == "__main__":
 
     with open(filename, "w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
-        # Header
-        writer.writerow(["Year", "Quarter", "Month", "Date", "Country", "Code", "Origin City", "Destination City", "Price"])
+        # Wir nehmen den Country Code der Destination mit auf
+        writer.writerow(["Year", "Quarter", "Month", "Date", "Country", "Code", "Origin City", "Dest. City", "Dest. Code", "Price"])
         
         for country, code, origin, promos in all_data:
             if not promos:
-                # Damit die Datei nicht "leer" aussieht für Git
-                writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, "No Promo Found", "0"])
+                writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, "No Promo Found", "-", "0"])
             else:
-                for dest, price in promos:
-                    writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, dest, price])
+                for dest_city, dest_code, price in promos:
+                    writer.writerow([year_val, q_val, month_val, date_val, country, code, origin, dest_city, dest_code, price])
 
     print(f"Fertig! {filename} wurde erstellt.")
